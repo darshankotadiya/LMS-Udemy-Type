@@ -611,19 +611,8 @@ const CourseDetails = () => {
 
                 {/* Purchase Section */}
                 <div className="p-4 md:p-6">
-                  {/* Price */}
+                  {/* Info */}
                   <div className="mb-4 md:mb-6">
-                    <div className="flex items-baseline space-x-2 md:space-x-3 mb-2">
-                      <span className="text-2xl md:text-3xl font-bold text-white">₹{course.price || '0'}</span>
-                      {course.originalPrice && course.originalPrice > course.price && (
-                        <>
-                          <span className="text-base md:text-lg text-slate-400 line-through">₹{course.originalPrice}</span>
-                          <span className="px-2 py-1 bg-gradient-to-r from-green-500 to-green-600 text-white text-xs font-semibold rounded-full">
-                            {Math.round(((course.originalPrice - course.price) / course.originalPrice) * 100)}% OFF
-                          </span>
-                        </>
-                      )}
-                    </div>
                     <div className="flex items-center space-x-2">
                       <div className="flex text-yellow-400">
                         {[...Array(5)].map((_, i) => (

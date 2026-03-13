@@ -10,7 +10,8 @@ import {
   checkCoursePurchase,
   getEnrolledCourses,
   getUserStats,
-  getAllStudentsAndEducators
+  getAllStudentsAndEducators,
+  subscribeNewsletter
 } from "../controllers/user.controllers.js";
 import express from 'express';
 import { authenticate, authorize } from "../middleware/authMiddleaare.js";
@@ -45,6 +46,9 @@ userRouter.post('/rating/:courseId', authenticate, authorize('student','educator
 
 // Get All Students and Educators
 userRouter.get('/all-students-and-educators', authenticate, authorize('student','educator'), getAllStudentsAndEducators);
+
+// Newsletter subscription (Public)
+userRouter.post('/newsletter/subscribe', subscribeNewsletter);
 
 export default userRouter;
 

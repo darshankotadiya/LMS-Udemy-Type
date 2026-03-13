@@ -498,6 +498,51 @@ export const sendNotificationEmail = async (email, name, subject, message, actio
 };
 
 /**
+ * Send welcome email for newsletter subscription
+ * @param {string} email - Recipient email
+ * @returns {Promise<Object>} Result object with success status
+ */
+export const sendCommunityWelcomeEmail = async (email) => {
+  const content = `
+    <div class="greeting">Welcome to the CourseConnect Community! 🌟</div>
+    <div class="message">
+      Thank you for subscribing to our newsletter! We're thrilled to have you as part of our community of lifelong learners.
+      <br><br>
+      By joining us, you'll be the first to know about:
+      <ul style="color: #666666; line-height: 1.8;">
+        <li>New course launches and early access</li>
+        <li>Exclusive discounts and holiday offers</li>
+        <li>Learning tips and industry insights</li>
+        <li>Success stories from our student community</li>
+      </ul>
+    </div>
+    
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${process.env.CLIENT_URL}/search" class="button">
+        📚 Start Learning Today
+      </a>
+    </div>
+    
+    <div class="message">
+      We're committed to providing you with the best educational content and support. If you ever have questions or suggestions, just hit reply!
+      <br><br>
+      Stay curious and keep growing!
+      <br>
+      <strong>The CourseConnect Team</strong>
+    </div>
+  `;
+
+  const mailOptions = {
+    from: `"${EMAIL_CONFIG.SENDER_NAME}" <${EMAIL_CONFIG.SENDER_EMAIL}>`,
+    to: email,
+    subject: "✨ You've joined the CourseConnect Community!",
+    html: createEmailTemplate("Community Welcome", content),
+  };
+
+  return await sendEmail(mailOptions, "newsletter welcome", email);
+};
+
+/**
  * Core email sending function with enhanced error handling and logging
  * @param {Object} mailOptions - Nodemailer mail options
  * @param {string} emailType - Type of email being sent (for logging)

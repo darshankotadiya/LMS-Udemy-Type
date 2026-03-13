@@ -130,3 +130,14 @@ export const getAllStudentsAndEducators = async () => {
     throw error;
   }
 };
+
+// Newsletter subscription
+export const subscribeNewsletter = async (email) => {
+  try {
+    const res = await api.post("/user/newsletter/subscribe", { email });
+    return res.data;
+  } catch (error) {
+    console.error("Error subscribing to newsletter:", error);
+    throw error;
+  }
+};

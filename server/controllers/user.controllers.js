@@ -3,6 +3,7 @@ import Course from "../model/course.model.js";
 import userCourseProgress from "../model/courseProgress.model.js";
 import Purchase from "../model/purchase.model.js";
 import { uploadProfilePictureToCloudinary } from "../config/multer.js";
+import { sendCommunityWelcomeEmail } from "../utils/emailUtils.js";
 
 // Get user profile data
 export const getUserData = async (req, res) => {
@@ -799,4 +800,38 @@ export const getAllStudentsAndEducators = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+// Subscribe to newsletter
+export const subscribeNewsletter = async (req, res) => {
+  try {
+    const { email } = req.body;
 
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: "Email is required"
+      });
+    }
+
+    // Since this is a simple implementation, we'll just send the welcome email
+    // In a real app, you'd save this to a Newsletter model
+    console.log(`New newsletter subscription request for: ${email}`);
+    
+    const emailResult = await sendCommunityWelcomeEmail(email);
+    
+    if (!emailResult.success) {
+      console.warn(`Failed to send newsletter welcome email to ${email}:`, emailResult.error);
+      // We still return success to the user as the subscription request was received
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Successfully subscribed to the newsletter!"
+    });
+  } catch (error) {
+    console.error('Newsletter subscription error:', error);
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
