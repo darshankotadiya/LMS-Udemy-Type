@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create axios instance
 const api = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL || "https://lms-udemy-backend.onrender.com/api", // Backend base URL
+  baseURL: import.meta.env.VITE_BACKEND_URL || "https://lms-udemy-type.onrender.com/api", // Backend base URL
   withCredentials: true, // useful for cookies/JWT
   timeout: 300000, // 5 minutes timeout for all requests
 });
