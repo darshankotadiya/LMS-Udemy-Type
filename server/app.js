@@ -25,9 +25,7 @@ app.use(morgan('dev'));
 
 // CORS configuration
 app.use(cors({
-  origin: [
-    'http://localhost:5173', 
- "https://lms-udemy-type.vercel.app"  ],
+  origin: true,
   credentials: true
 }));
 
