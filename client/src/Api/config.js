@@ -41,7 +41,7 @@ api.interceptors.response.use(
       try {
         // Try to refresh the token
         const refreshResponse = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL || "http://localhost:3000/api"}/auth/refresh-token`,
+          `${import.meta.env.VITE_BACKEND_URL || "https://lms-udemy-backend.onrender.com/api"}/auth/refresh-token`,
           {},
           {
             withCredentials: true,
