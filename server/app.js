@@ -20,14 +20,16 @@ dotenv.config();
 
 // Increase server timeout for file uploads
 app.timeout = 600000; // 10 minutes
-
 app.use(morgan('dev'));
 
-// CORS configuration
 app.use(cors({
-  origin: true,
+  origin: ["https://lms-udemy-type.vercel.app"],
+  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"],
   credentials: true
 }));
+
+app.options("*", cors());
 
 app.use(cookieParser());
 
