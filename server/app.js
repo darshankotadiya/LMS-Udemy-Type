@@ -29,8 +29,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.options("/*", cors());
-
 app.use(cookieParser());
 
 // Conditional middleware - skip body parsing for file upload routes
